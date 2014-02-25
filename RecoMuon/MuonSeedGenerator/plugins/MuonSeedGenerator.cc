@@ -12,7 +12,6 @@
 
 
 #include "RecoMuon/MuonSeedGenerator/plugins/MuonSeedGenerator.h"
-#include "RecoMuon/MuonSeedGenerator/src/MuonSeedFinder.h"
 #include "RecoMuon/MuonSeedGenerator/src/MuonSeedOrcaPatternRecognition.h"
 #include "RecoMuon/MuonSeedGenerator/src/MuonSeedFinder.h"
 #include "RecoMuon/MuonSeedGenerator/src/MuonSeedSimpleCleaner.h"
@@ -21,9 +20,7 @@
 // Data Formats 
 #include "DataFormats/TrajectorySeed/interface/TrajectorySeed.h"
 #include "DataFormats/TrajectorySeed/interface/TrajectorySeedCollection.h"
-
 #include "DataFormats/Common/interface/Handle.h"
-
 #include "RecoMuon/TransientTrackingRecHit/interface/MuonTransientTrackingRecHit.h"
 #include "RecoMuon/Records/interface/MuonRecoGeometryRecord.h"
 
@@ -81,7 +78,7 @@ void MuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& eSetup
   edm::ESHandle<MagneticField> field;
   eSetup.get<IdealMagneticFieldRecord>().get(field);
   theSeedFinder->setBField(&*field);
-
+std::cout<<" SeedFinder BField "<<std::endl;
   reco::BeamSpot beamSpot;
   edm::Handle<reco::BeamSpot> beamSpotHandle;
   event.getByLabel(theBeamSpotTag, beamSpotHandle);
@@ -98,18 +95,22 @@ void MuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& eSetup
   // make it a vector so we can subtract it from position vectors
   GlobalVector gv(beamSpot.x0(), beamSpot.y0(), beamSpot.z0());
   theSeedFinder->setBeamSpot(gv);
+std::cout<<" SeedFinder BeamSpot "<<std::endl;
 
+std::cout<<"Before PatternRecognition "<<std::endl;
   std::vector<MuonRecHitContainer> patterns;
   thePatternRecognition->produce(event, eSetup, patterns);
+std::cout<<"After PatternRecognition "<<std::endl;
 
   for(std::vector<MuonRecHitContainer>::const_iterator seedSegments = patterns.begin();
       seedSegments != patterns.end(); ++seedSegments)
   {
+std::cout<<" SeedFinder seeds N "<<std::endl;  
     theSeedFinder->seeds(*seedSegments, *output);
   }
-
+std::cout<<" SeedCleaner "<<std::endl;  
   theSeedCleaner->clean(*output);
-
+  
   event.put(output);
 }
 

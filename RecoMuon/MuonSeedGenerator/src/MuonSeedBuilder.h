@@ -109,6 +109,10 @@ class MuonSeedBuilder
   // Enable the CSC measurement
   bool enableCSCMeasurement;
 
+  // Enable the CSC measurement
+  bool enableGEMMeasurement;
+
+
   // Minimum # of hits to consider a CSC Segment;
   int minCSCHitsPerSegment;
 
@@ -132,6 +136,10 @@ class MuonSeedBuilder
 
   /// Name of the CSC segment collection
   edm::InputTag theCSCSegmentLabel;
+
+  /// Name of the GEM segment collection
+  edm::InputTag theGEMSegmentLabel;
+
 
   /// Create seed according to region (CSC, DT, Overlap)
   MuonSeedCreator* muonSeedCreate_;

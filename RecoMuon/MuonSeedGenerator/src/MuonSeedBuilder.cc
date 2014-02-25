@@ -14,6 +14,8 @@
 #include <DataFormats/TrajectorySeed/interface/TrajectorySeed.h>
 #include <DataFormats/CSCRecHit/interface/CSCRecHit2DCollection.h>
 #include <DataFormats/CSCRecHit/interface/CSCRecHit2D.h>
+#include <DataFormats/GEMRecHit/interface/GEMRecHitCollection.h>
+#include <DataFormats/GEMRecHit/interface/GEMRecHit.h>
 #include <DataFormats/CSCRecHit/interface/CSCSegmentCollection.h>
 #include <DataFormats/CSCRecHit/interface/CSCSegment.h>
 #include <DataFormats/DTRecHit/interface/DTRecSegment4DCollection.h>
@@ -61,6 +63,10 @@ MuonSeedBuilder::MuonSeedBuilder(const edm::ParameterSet& pset){
   // enable the CSC chamber
   enableCSCMeasurement = pset.getParameter<bool>("EnableCSCMeasurement");
   theCSCSegmentLabel   = pset.getParameter<edm::InputTag>("CSCSegmentLabel");
+
+  // enable the GEM chamber
+  enableGEMMeasurement = pset.getParameter<bool>("EnableGEMMeasurement");
+  theGEMSegmentLabel   = pset.getParameter<edm::InputTag>("GEMSegmentLabel");
 
   // Parameters for seed creation in endcap region
   minCSCHitsPerSegment = pset.getParameter<int>("minCSCHitsPerSegment");
@@ -122,9 +128,9 @@ int MuonSeedBuilder::build( edm::Event& event, const edm::EventSetup& eventSetup
   std::vector<float> phiOfSeed;
   std::vector<int> nSegOnSeed;
 
- // Instantiate the accessor (get the segments: DT + CSC but not RPC=false)
-  MuonDetLayerMeasurements muonMeasurements(theDTSegmentLabel,theCSCSegmentLabel,edm::InputTag(),edm::InputTag(),
-                                            enableDTMeasurement,enableCSCMeasurement,false,false);
+ // Instantiate the accessor (get the segments: DT + CSC + GEM but not RPC=false)
+  MuonDetLayerMeasurements muonMeasurements(theDTSegmentLabel,theCSCSegmentLabel,edm::InputTag(),theGEMSegmentLabel,
+                                            enableDTMeasurement,enableCSCMeasurement,false,enableGEMMeasurement);
 
  // Instantiate the accessor (get the segments: DT + CSC but not RPC=false)
  // MuonDetLayerMeasurements muonMeasurements(enableDTMeasurement,enableCSCMeasurement,false,

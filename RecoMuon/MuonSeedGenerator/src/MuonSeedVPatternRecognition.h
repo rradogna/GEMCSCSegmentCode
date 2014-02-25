@@ -25,12 +25,17 @@ protected:
   /// the name of the CSC rec hits collection
   edm::InputTag theCSCRecSegmentLabel;
 
+  /// the name of the GEM rec hits collection
+  edm::InputTag theGEMRecSegmentLabel;
+
   ///Enable the DT measurement
   bool enableDTMeasurement;
 
   ///Enable the CSC measurement
   bool enableCSCMeasurement;
 
+  ///Enable the GEM measurement
+  bool enableGEMMeasurement;
 };
 
 #endif

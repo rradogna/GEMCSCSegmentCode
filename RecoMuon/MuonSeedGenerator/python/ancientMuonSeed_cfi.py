@@ -11,8 +11,10 @@ ancientMuonSeed = cms.EDProducer("MuonSeedGenerator",
                                  scaleDT = cms.bool(True),
                                  CSCRecSegmentLabel = cms.InputTag("cscSegments"),
                                  DTRecSegmentLabel = cms.InputTag("dt4DSegments"),
+                                 GEMRecSegmentLabel = cms.InputTag("gemRecHits"),
                                  EnableDTMeasurement = cms.bool(True),
                                  EnableCSCMeasurement = cms.bool(True),
+                                 EnableGEMMeasurement = cms.bool(True),
                                  # places where it's OK to have single-segment seeds
                                  crackEtas = cms.vdouble(0.2, 1.6, 1.7),
                                  crackWindow = cms.double(0.04)

@@ -110,6 +110,9 @@ bool MuonTransientTrackingRecHit::isRPC() const{
   return  (geographicalId().subdetId() == MuonSubdetId::RPC);
 }
 
+bool MuonTransientTrackingRecHit::isGEM() const{
+  return  (geographicalId().subdetId() == MuonSubdetId::GEM);
+}
 // FIXME, now it is "on-demand". I have to change it.
 // FIXME check on mono hit!
 TransientTrackingRecHit::ConstRecHitContainer MuonTransientTrackingRecHit::transientHits() const{
@@ -194,6 +197,6 @@ void MuonTransientTrackingRecHit::invalidateHit(){
       for(std::vector<TrackingRecHit*>::iterator it = hits.begin(); it != hits.end(); ++it)
 	(*it)->setType(bad);
     }
-  
+
   
 }

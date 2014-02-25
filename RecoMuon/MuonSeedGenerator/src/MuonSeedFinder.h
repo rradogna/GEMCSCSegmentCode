@@ -16,6 +16,7 @@
 #include "RecoMuon/MuonSeedGenerator/src/MuonSeedVFinder.h"
 #include "RecoMuon/MuonSeedGenerator/src/MuonSeedPtExtractor.h"
 #include "RecoMuon/MuonSeedGenerator/src/MuonCSCSeedFromRecHits.h"
+#include "RecoMuon/MuonSeedGenerator/src/MuonGEMSeedFromRecHits.h"
 #include "RecoMuon/MuonSeedGenerator/src/MuonDTSeedFromRecHits.h"
 #include "RecoMuon/MuonSeedGenerator/src/MuonOverlapSeedFromRecHits.h"
 
@@ -50,6 +51,7 @@ private:
   MuonDTSeedFromRecHits theBarrel;
   MuonOverlapSeedFromRecHits theOverlap;
   MuonCSCSeedFromRecHits theEndcap;
+  //MuonGEMSeedFromRecHits theEndcap;
 
 };
 #endif

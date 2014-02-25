@@ -26,6 +26,7 @@ MuonSeed = cms.EDProducer("MuonSeedProducer",
     # Minimum and maximum Pt for seeds
     defaultSeedPt = cms.double(25.0),
     CSCSegmentLabel = cms.InputTag("cscSegments"),
+    GEMSegmentLabel = cms.InputTag("gemRecHits"),
     # this means 1/5 of length in ME1/a  
     maxEtaResolutionCSC = cms.double(0.06),
     # enable the DT chamber
@@ -39,7 +40,8 @@ MuonSeed = cms.EDProducer("MuonSeedProducer",
     maxDeltaEtaCSC = cms.double(0.2),
     maxDeltaPhiCSC = cms.double(0.5),
     # enable the CSC chamber
-    EnableCSCMeasurement = cms.bool(True)
+    EnableCSCMeasurement = cms.bool(True),
+    EnableGEMMeasurement = cms.bool(True)
 )
 
 

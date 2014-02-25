@@ -54,6 +54,10 @@ public:
   /// if this rec hit is a RPC rec hit
   bool isRPC() const;
 
+  /// if this rec hit is a GEM rec hit
+  bool isGEM() const;
+
+
   /// return the sub components of this transient rechit
   virtual ConstRecHitContainer transientHits() const;
 

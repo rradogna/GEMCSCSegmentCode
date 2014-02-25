@@ -1,0 +1,6 @@
+[submodule "L2seedsAnalyzer"]
+	path = L2seedsAnalyzer
+	url = git@github.com:HuguesBrun/L2seedsAnalyzer.git
+[submodule "SeedToTrackProducer"]
+	path = SeedToTrackProducer
+	url = git@github.com:HuguesBrun/SeedToTrackProducer.git

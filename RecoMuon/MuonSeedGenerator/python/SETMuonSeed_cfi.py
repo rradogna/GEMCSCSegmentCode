@@ -20,6 +20,7 @@ SETMuonSeed  = cms.EDProducer("SETMuonSeedProducer",
         FilterParameters = cms.PSet(
             DTRecSegmentLabel = cms.InputTag("dt4DSegments"),
             CSCRecSegmentLabel = cms.InputTag("cscSegments"),
+            GEMRecSegmentLabel = cms.InputTag("gemRecHits"),
             RPCRecSegmentLabel = cms.InputTag("rpcRecHits"),
             Propagator = cms.string('SteppingHelixPropagatorAny'),
 # DT + CSC chambers here           
@@ -31,7 +32,8 @@ SETMuonSeed  = cms.EDProducer("SETMuonSeedProducer",
             MinLocalSegmentAngle = cms.double(0.09),
 # NOT USED for now
             EnableDTMeasurement = cms.bool(True),
-            EnableCSCMeasurement = cms.bool(True)       
+            EnableCSCMeasurement = cms.bool(True),       
+            EnableGEMMeasurement = cms.bool(True)       
         )
     )
 )
